@@ -1,0 +1,22 @@
+@import '../../../styles/colors.scss';
+
+.logo {
+	max-width: 240px;
+	display: flex;
+	align-items: center;
+}
+
+.logo__blue {
+	display: block;
+	height: 100%;
+	color: $light-blue;
+	font-size: 24px;
+}
+
+.logo__white {
+	display: block;
+	height: 100%;
+	color: #fff;
+	margin-right: 5px;
+	font-size: 24px;
+}

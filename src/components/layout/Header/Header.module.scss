@@ -1,0 +1,23 @@
+.header {
+	height: 64px;
+	background: #535c69;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header_left {
+	display: flex;
+	align-items: center;
+}
+
+.header_center {
+	display: flex;
+	align-items: center;
+}
+
+.header_right {
+	display: flex;
+	align-items: center;
+	margin-right: 16px;
+}

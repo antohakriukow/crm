@@ -1,0 +1,15 @@
+@import '../../../styles/colors.scss';
+
+.user {
+	height: 40px;
+	width: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	> svg {
+		height: 40px;
+		width: 40px;
+		color: $white;
+	}
+}

@@ -1,0 +1,29 @@
+@import '../../../styles/colors.scss';
+
+.search {
+	background: $grey;
+	height: 34px;
+	display: flex;
+	justify-content: center;
+	border-radius: 17px;
+	max-width: 240px;
+
+	> svg {
+		height: 20px;
+		width: 20px;
+		margin: auto;
+		color: $light-grey;
+		margin-right: 10px;
+	}
+}
+
+.search__input {
+	background: transparent;
+	outline: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	margin-left: 16px;
+	color: $white;
+	max-width: 100px;
+}
