@@ -1,0 +1,45 @@
+@import '../../../../styles/colors.scss';
+.sidebar {
+	height: calc(100vh - 64px);
+	width: 64px;
+	background: $light-grey;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.sidebar_opened {
+	width: 160px;
+}
+
+.item__container {
+	width: 100%;
+	display: flex;
+	cursor: pointer;
+	&:hover {
+		background-color: $white;
+	}
+}
+
+.item {
+	z-index: 10;
+	margin: 6px 0 0 13px;
+	height: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-decoration: none;
+
+	> svg {
+		z-index: 10;
+		height: 32px;
+		width: 32px;
+		color: $grey;
+	}
+}
+
+.title {
+	z-index: 10;
+	margin-left: 12px;
+	color: $grey;
+}
