@@ -16,14 +16,18 @@ const SideBar: FC = () => {
 				[styles.sidebar_opened]: isMenuOpened,
 			})}
 		>
-			<SideBarMenuItem name="MdOutlineTableChart" title="CRM" url="/" />
-			<SideBarMenuItem name="MdCalendarToday" title="Calendar" url="/" />
+			<SideBarMenuItem name="MdOutlineTableChart" title="CRM" url="/crm" />
 			<SideBarMenuItem
-				name="MdOutlinePermContactCalendar"
-				title="Contacts"
-				url="/"
+				name="MdCalendarToday"
+				title="Calendar"
+				url="/calendar"
 			/>
-			<SideBarMenuItem name="MdOutlineEmail" title="Email" url="/" />
+			<SideBarMenuItem
+				name="MdOutlineContacts"
+				title="Contacts"
+				url="/contacts"
+			/>
+			<SideBarMenuItem name="MdOutlineEmail" title="Email" url="/email" />
 		</div>
 	)
 }
