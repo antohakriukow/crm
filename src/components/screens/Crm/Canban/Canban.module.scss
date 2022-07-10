@@ -1,0 +1,16 @@
+@import '../../../../styles/colors.scss';
+
+.canban {
+	display: flex;
+	gap: 3px;
+	max-height: calc(100vh - 152px); // TODO: change 152px to current value
+	overflow-x: scroll;
+}
+.canban__column {
+	width: 280px;
+	min-width: 280px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	overflow-y: scroll;
+}

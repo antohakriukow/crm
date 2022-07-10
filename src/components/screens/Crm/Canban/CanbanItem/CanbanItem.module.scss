@@ -1,0 +1,64 @@
+@import '../../../../../styles/colors.scss';
+
+.item {
+	background: $white;
+	width: 276px;
+	height: fit-content;
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.item__title {
+	margin: 0;
+	max-height: 100px;
+	word-wrap: break-word;
+}
+
+.item__date {
+	margin: 0;
+	margin-top: 10px;
+	color: $grey;
+}
+
+.item__info {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 64px;
+}
+
+.item__taskTitle {
+	margin: 0 4px 0 0;
+	color: $blue;
+}
+
+.item__taskCount {
+	color: $white;
+	background-color: $orange;
+	width: 20px;
+	border-radius: 9999px;
+	padding: 2px;
+	text-align: center;
+	line-height: 0.8;
+	font-size: 14px;
+}
+
+.item__handlers {
+	> button {
+		width: 25px;
+		height: 25px;
+		> svg {
+			margin: auto;
+			color: $grey;
+		}
+
+		&:hover {
+			> svg {
+				color: $orange;
+			}
+		}
+	}
+}
