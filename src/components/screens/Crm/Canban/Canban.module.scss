@@ -7,10 +7,16 @@
 	overflow-x: scroll;
 }
 .canban__column {
+	min-height: calc(100vh - 152px);
 	width: 280px;
 	min-width: 280px;
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
 	overflow-y: scroll;
+	border-left: 1px dashed $grey;
+
+	&:last-of-type {
+		border-right: 1px dashed $grey;
+	}
 }

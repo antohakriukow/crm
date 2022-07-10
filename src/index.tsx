@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -9,15 +10,27 @@ import { store } from './store/store'
 
 import './index.css'
 import reportWebVitals from './reportWebVitals'
+import ReduxToast from './vendor/ReduxToast'
+
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+		},
+	},
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
 	<React.StrictMode>
 		{/* <AuthProvider> */}
 		<Provider store={store}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
+			<QueryClientProvider client={queryClient}>
+				<ReduxToast />
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</QueryClientProvider>
 		</Provider>
 		{/* </AuthProvider> */}
 	</React.StrictMode>

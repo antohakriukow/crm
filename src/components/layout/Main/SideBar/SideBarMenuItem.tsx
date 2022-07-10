@@ -21,10 +21,10 @@ const SideBarMenuItem: FC<ISideBarMenuItem> = ({ name, title, url }) => {
 	const { isMenuOpened } = useSelector((state: TypeRootState) => state.ui)
 	const { pathname } = useLocation()
 	const isActive = url === pathname
-	console.log(isActive)
 
 	return (
 		<NavLink
+			draggable={false}
 			to={url}
 			className={cn(styles.item, {
 				[styles.item_active]: isActive,

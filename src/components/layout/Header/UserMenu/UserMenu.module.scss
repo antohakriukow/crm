@@ -1,0 +1,39 @@
+@import '../../../../styles/colors.scss';
+
+.menu__container {
+	position: fixed;
+	top: 64px;
+	right: 0;
+	background: $dark-grey;
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+}
+
+.menu__item {
+	padding: 8px;
+	display: flex;
+	align-items: center;
+	&:hover {
+		cursor: pointer;
+		background-color: $grey;
+		> svg,
+		span {
+			color: $light-blue;
+		}
+	}
+	> svg {
+		color: $white;
+		height: 18px;
+		width: 18px;
+	}
+}
+
+.menu__itemTitle {
+	padding-left: 4px;
+	color: $white;
+	font-size: 14px;
+	user-select: none;
+}

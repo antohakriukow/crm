@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { reducer as toastrReducer } from 'react-redux-toastr'
 
 import { uiReducer } from './ui/ui.slice'
 
@@ -8,6 +9,7 @@ export const store = configureStore({
 	reducer: {
 		ui: uiReducer,
 		user: userReducer,
+		toastr: toastrReducer,
 	},
 	devTools: true,
 })

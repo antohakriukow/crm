@@ -12,7 +12,11 @@ interface ICanbanItem {
 
 const CanbanItem: FC<ICanbanItem> = ({ title, date, tasksCount }) => {
 	return (
-		<div className={styles.item} draggable={true}>
+		<div
+			className={styles.item}
+			draggable={true}
+			onDragEnd={(e) => console.log(e)}
+		>
 			<div className={styles.item__data}>
 				<h3 className={styles.item__title}>{title}</h3>
 				<p className={styles.item__date}>{date}</p>

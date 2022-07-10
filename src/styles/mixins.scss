@@ -1,0 +1,19 @@
+@import './colors.scss';
+
+@mixin btn-primary {
+	background-color: $light-blue;
+	color: #fff;
+	border-radius: 0.65rem /* 10.4px */;
+	transition: background-color 0.3s ease-in-out;
+	opacity: 0.85;
+	&:hover {
+		opacity: 1;
+		cursor: pointer;
+	}
+}
+
+@mixin air-block {
+	border-radius: 0.8rem /* 12.8px */;
+	color: #fff;
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}

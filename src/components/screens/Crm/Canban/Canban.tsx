@@ -1,17 +1,16 @@
 import { FC } from 'react'
 
-import styles from './Canban.module.scss'
+import { useStage } from '../../../../hooks/useStage'
 
-import { canbanColumns } from '../../../../data/crm/crm.data'
+import styles from './Canban.module.scss'
 
 import CanbanColumn from './CanbanColumn'
 
 const Canban: FC = () => {
+	const { data: response } = useStage()
 	return (
 		<div className={styles.canban}>
-			{canbanColumns.map((col) => (
-				<CanbanColumn column={col} />
-			))}
+			{response && response.data.map((col) => <CanbanColumn column={col} />)}
 		</div>
 	)
 }

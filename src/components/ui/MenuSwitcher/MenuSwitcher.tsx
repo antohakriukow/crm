@@ -1,8 +1,6 @@
 import { FC } from 'react'
 import { useSelector } from 'react-redux'
 
-import { toggleMenu } from '../../../store/ui/ui.slice'
-
 import { useActions } from '../../../hooks/useActions'
 
 import { TypeRootState } from '../../../store/store'
@@ -13,11 +11,11 @@ import MaterialIcon from '../MaterialIcon'
 
 const MenuSwitcher: FC = () => {
 	const { toggleMenu } = useActions()
-	const { isUser } = useSelector((state: TypeRootState) => state.user)
+	const { user } = useSelector((state: TypeRootState) => state.user)
 
 	return (
 		<div className={styles.menu__switcher} onClick={() => toggleMenu()}>
-			{isUser && <MaterialIcon name="MdMenu" />}
+			{user && <MaterialIcon name="MdMenu" />}
 		</div>
 	)
 }

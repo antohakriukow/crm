@@ -4,9 +4,13 @@ import styles from './UserIcon.module.scss'
 
 import MaterialIcon from '../MaterialIcon'
 
-const UserIcon: FC = () => {
+interface IUserIcon {
+	onClick: () => void
+}
+
+const UserIcon: FC<IUserIcon> = ({ onClick }) => {
 	return (
-		<div className={styles.user}>
+		<div className={styles.user} onClick={() => onClick()}>
 			<MaterialIcon name="MdAccountCircle" />
 		</div>
 	)

@@ -1,0 +1,45 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+.auth__wrapper {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $dark-grey;
+}
+
+.auth__title {
+	margin: 0 0 24px 0;
+	text-align: center;
+}
+
+.auth__form {
+	padding: 24px;
+	@include air-block;
+	background-color: $dark-grey;
+}
+
+.auth__buttons {
+	margin-top: 48px;
+
+	> button {
+		&:first-child {
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+		&:last-child {
+			border-top-left-radius: 0px;
+			border-bottom-left-radius: 0px;
+			background-color: $light-blue2;
+			transition-property: opacity;
+			transition-timing-function: ease-in-out;
+			transition-duration: 200ms;
+
+			// &:hover {
+			// 	opacity: 1;
+			// }
+		}
+	}
+}

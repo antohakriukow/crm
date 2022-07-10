@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import { useSelector } from 'react-redux'
 
+import { useAuth } from '../../hooks/useAuth'
+
 import { TypeRootState } from '../../store/store'
 
 import styles from './App.module.scss'
@@ -10,11 +12,11 @@ import Main from '../layout/Main/Main'
 import Auth from '../screens/Auth/Auth'
 
 const App: FC = () => {
-	const { isUser } = useSelector((state: TypeRootState) => state.user)
+	const { user } = useAuth()
 	return (
 		<div className={styles.app}>
 			<Header />
-			{isUser ? <Main /> : <Auth />}
+			{user ? <Main /> : <Auth />}
 		</div>
 	)
 }

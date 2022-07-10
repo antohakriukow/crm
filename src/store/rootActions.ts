@@ -1,5 +1,10 @@
-import { toggleMenu } from './ui/ui.slice'
+import { toggleMenu, togglePopup, toggleUSerMenu } from './ui/ui.slice'
 
-import { fakeReducer } from './user/user.slice'
+import * as userActions from './user/user.actions'
 
-export const allActions = { toggleMenu, fakeReducer }
+export const allActions = {
+	...userActions,
+	toggleMenu,
+	toggleUSerMenu,
+	togglePopup,
+}

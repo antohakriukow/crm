@@ -7,12 +7,17 @@ import MenuSwitcher from '../../ui/MenuSwitcher/MenuSwitcher'
 import SearchField from '../../ui/SearchField/SearchField'
 import UserIcon from '../../ui/UserIcon/UserIcon'
 
+import { useActions } from '../../../hooks/useActions'
+
 import { TypeRootState } from '../../../store/store'
 
 import styles from './Header.module.scss'
 
+import UserMenu from './UserMenu/UserMenu'
+
 const Header: FC = () => {
-	const { isUser } = useSelector((state: TypeRootState) => state.user)
+	const { user } = useSelector((state: TypeRootState) => state.user)
+	const { toggleUSerMenu } = useActions()
 
 	return (
 		<div className={styles.header}>
@@ -20,15 +25,16 @@ const Header: FC = () => {
 				<MenuSwitcher />
 				<Logo />
 			</div>
-			{isUser && (
+			{user && (
 				<div className={styles.header_center}>
 					<SearchField backgroundColor="#717a84" onClick={() => null} />
 					<Clock />
 				</div>
 			)}
-			{isUser && (
+			{user && (
 				<div className={styles.header_right}>
-					<UserIcon />
+					<UserIcon onClick={toggleUSerMenu} />
+					<UserMenu />
 				</div>
 			)}
 		</div>
