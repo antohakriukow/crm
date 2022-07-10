@@ -22,7 +22,7 @@ const Header: FC = () => {
 			</div>
 			{isUser && (
 				<div className={styles.header_center}>
-					<SearchField />
+					<SearchField backgroundColor="#717a84" onClick={() => null} />
 					<Clock />
 				</div>
 			)}

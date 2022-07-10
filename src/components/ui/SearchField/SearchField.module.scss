@@ -1,20 +1,10 @@
 @import '../../../styles/colors.scss';
 
 .search {
-	background: $grey;
 	height: 34px;
 	display: flex;
-	justify-content: center;
-	border-radius: 17px;
+	justify-content: space-between;
 	max-width: 240px;
-
-	> svg {
-		height: 20px;
-		width: 20px;
-		margin: auto;
-		color: $light-grey;
-		margin-right: 10px;
-	}
 }
 
 .search__input {
@@ -24,6 +14,25 @@
 	padding: 0;
 	margin: 0;
 	margin-left: 16px;
-	color: $white;
 	max-width: 100px;
+}
+
+.search__btn {
+	margin: auto 0;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	&:hover {
+		cursor: pointer;
+		> svg {
+			color: $light-blue;
+		}
+	}
+
+	> svg {
+		height: 20px;
+		width: 20px;
+		color: $dark-grey;
+		margin-right: 10px;
+	}
 }

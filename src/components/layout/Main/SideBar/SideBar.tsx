@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { TypeRootState } from '../../../../store/store'
 
 import styles from './SideBar.module.scss'
-
 import SideBarMenuItem from './SideBarMenuItem'
 
 const SideBar: FC = () => {
