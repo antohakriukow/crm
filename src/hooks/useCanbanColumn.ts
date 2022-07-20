@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { StageService } from '../services/stage.service'
 
-import { IStageDTO } from '../shared/types/crm.interface'
+import { ICreateStageDTO, IStageDTO } from '../shared/types/crm.interface'
 
 import { toastError } from '../utils/toastr-error'
 
@@ -38,14 +38,22 @@ export const useCanbanColumn = () => {
 		}
 	)
 
-	const addColumn = () => null
+	const { mutateAsync: createStage } = useMutation(
+		'create column',
+		(data: ICreateStageDTO) => StageService.create(data),
+		{
+			onSuccess() {
+				queryData.refetch()
+			},
+		}
+	)
 
 	return {
 		...queryData,
 		openColumnEditor,
 		closeColumnEditor,
 		updateColor,
-		addColumn,
+		createStage,
 		currentColumn,
 	}
 }

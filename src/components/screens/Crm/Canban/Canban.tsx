@@ -11,7 +11,9 @@ const Canban: FC = () => {
 	return (
 		<div className={styles.canban}>
 			{response &&
-				response.data.map((col) => <CanbanColumn column={col} key={col._id} />)}
+				response.data
+					.sort((a, b) => a.position - b.position)
+					.map((col) => <CanbanColumn column={col} key={col._id} />)}
 		</div>
 	)
 }

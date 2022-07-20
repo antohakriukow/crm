@@ -13,6 +13,7 @@ interface IBtn {
 	icon?: TypeMaterialIconName
 	onClick: (e: React.MouseEvent) => void
 	id?: string
+	dataPosition?: number
 }
 
 const Btn: FC<IBtn> = ({
@@ -22,9 +23,11 @@ const Btn: FC<IBtn> = ({
 	icon,
 	onClick,
 	id,
+	dataPosition,
 }) => {
 	return (
 		<button
+			data-position={dataPosition}
 			id={id}
 			className={styles.btn}
 			onClick={onClick}

@@ -19,6 +19,7 @@ interface ICanbanColumn {
 	column: {
 		_id: string
 		name: string
+		position: number
 		color: string
 		owner: string
 	}
@@ -30,12 +31,22 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 
 	const {
 		openColumnEditor,
-		addColumn,
+		createStage,
 		updateColor,
 		currentColumn,
 		closeColumnEditor,
 	} = useCanbanColumn()
 	const activeColumn = currentColumn === column._id
+
+	const handleCreateStage = async (e: React.BaseSyntheticEvent) => {
+		const currentPosition = e.currentTarget.dataset.position
+		console.log(currentPosition)
+		await createStage({
+			name: 'Stage 1',
+			color: '#a1a6ac',
+			position: +currentPosition + 1,
+		})
+	}
 
 	const handleUpdateColor = async (e: React.MouseEvent) => {
 		await updateColor({
@@ -46,7 +57,12 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 
 	return (
 		<>
-			<div className={styles.canban__column} draggable={true} id={column._id}>
+			<div
+				className={styles.canban__column}
+				draggable={true}
+				id={column._id}
+				data-position={column.position}
+			>
 				<div
 					className={styles.canban__columnHeader}
 					style={{ backgroundColor: column.color }}
@@ -93,7 +109,11 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 								icon="MdModeEditOutline"
 							/>
 						)}
-						<Btn onClick={() => null} icon="MdAdd" />
+						<Btn
+							dataPosition={column.position}
+							onClick={(e) => handleCreateStage(e)}
+							icon="MdAdd"
+						/>
 					</div>
 				</div>
 				<CanbanItemCreator stage={column._id} />

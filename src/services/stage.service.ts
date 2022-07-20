@@ -1,4 +1,8 @@
-import { IStage, IStageDTO } from '../shared/types/crm.interface'
+import {
+	ICreateStageDTO,
+	IStage,
+	IStageDTO,
+} from '../shared/types/crm.interface'
 
 import { getStageUrl } from '../config/api.config'
 
@@ -13,7 +17,8 @@ export const StageService = {
 		return axios.get<IStage>(getStageUrl(`/${_id}`))
 	},
 
-	async create(data: IStageDTO) {
+	async create(data: ICreateStageDTO) {
+		console.log(data)
 		return axios.post<string>(getStageUrl('/'), data)
 	},
 

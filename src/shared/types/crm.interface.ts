@@ -1,5 +1,6 @@
 export interface IStage {
 	_id: string
+	position: number
 	name: string
 	color: string
 	owner: string
@@ -7,11 +8,12 @@ export interface IStage {
 
 export interface IStageDTO {
 	_id: string
+	position?: number
 	name?: string
 	color?: string
 }
 
-// export interface IStageDTO extends Omit<IStage, '_id' | 'owner'> {}
+export interface ICreateStageDTO extends Omit<IStageDTO, '_id'> {}
 
 export interface IDeal {
 	_id: string
