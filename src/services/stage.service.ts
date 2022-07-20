@@ -17,8 +17,11 @@ export const StageService = {
 		return axios.post<string>(getStageUrl('/'), data)
 	},
 
-	async update(_id: string, data: IStageDTO) {
-		return axios.put<string>(getStageUrl(`/${_id}`), data)
+	async update(data: IStageDTO) {
+		return axios.put<string>(getStageUrl(`/${data._id}`), {
+			name: data?.name,
+			color: data?.color,
+		})
 	},
 
 	async delete(_id: string) {

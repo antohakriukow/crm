@@ -1,9 +1,6 @@
 import { FC } from 'react'
-import { useSelector } from 'react-redux'
 
 import { useAuth } from '../../hooks/useAuth'
-
-import { TypeRootState } from '../../store/store'
 
 import styles from './App.module.scss'
 

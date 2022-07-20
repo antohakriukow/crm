@@ -5,8 +5,11 @@
 	gap: 3px;
 	max-height: calc(100vh - 152px); // TODO: change 152px to current value
 	overflow-x: scroll;
+	position: relative;
 }
+
 .canban__column {
+	padding-left: 3px;
 	min-height: calc(100vh - 152px);
 	width: 280px;
 	min-width: 280px;
@@ -19,4 +22,82 @@
 	&:last-of-type {
 		border-right: 1px dashed $grey;
 	}
+}
+
+.canban__columnHeader {
+	z-index: 10;
+	width: 276px;
+	height: 32px;
+	padding: 0 4px 0 12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 12px;
+}
+
+.canban__columnInfo {
+	display: flex;
+	align-items: center;
+}
+
+.canban__columnName {
+	font-weight: 600;
+	outline: none;
+}
+
+.canban__columnTools {
+	display: flex;
+	align-items: center;
+	> button {
+		width: 25px;
+		height: 25px;
+		> svg {
+			margin: auto;
+			&:hover {
+				color: $orange;
+			}
+		}
+	}
+}
+
+.canban__columnCounter {
+	margin-left: 2px;
+	color: $grey;
+	font-weight: 100;
+}
+
+.column__creator {
+	height: 32px;
+	width: 20px;
+	background-color: $blue;
+}
+
+.canban__itemCreator {
+	height: 32px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $light-grey;
+
+	&:hover {
+		cursor: pointer;
+		background-color: $light-blue;
+		color: white;
+	}
+	> svg {
+		height: 24px;
+		width: 24px;
+	}
+}
+
+.editable {
+	background-color: $white;
+	width: 180px;
+	height: 20px;
+	padding: 4px;
+}
+
+.hidden {
+	display: none;
 }

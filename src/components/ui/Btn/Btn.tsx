@@ -11,12 +11,21 @@ interface IBtn {
 	borderColor?: string
 	text?: string
 	icon?: TypeMaterialIconName
-	onClick: () => void
+	onClick: (e: React.MouseEvent) => void
+	id?: string
 }
 
-const Btn: FC<IBtn> = ({ color, borderColor, text, icon, onClick }) => {
+const Btn: FC<IBtn> = ({
+	color = 'transparent',
+	borderColor,
+	text,
+	icon,
+	onClick,
+	id,
+}) => {
 	return (
 		<button
+			id={id}
 			className={styles.btn}
 			onClick={onClick}
 			style={{

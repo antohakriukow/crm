@@ -1,6 +1,11 @@
-import { IDeal, IStage, IStageDTO } from '../shared/types/crm.interface'
+import {
+	IDeal,
+	IDealDTO,
+	IDeleteDealsStageDTO,
+	IUpdateDealsStageDTO,
+} from '../shared/types/crm.interface'
 
-import { getDealUrl, getStageUrl } from '../config/api.config'
+import { getDealUrl } from '../config/api.config'
 
 import axios from '../api/interceptors'
 
@@ -9,19 +14,28 @@ export const DealService = {
 		return axios.get<IDeal[]>(getDealUrl(''))
 	},
 
-	// async getById(_id: string) {
-	// 	return axios.get<IStage>(getStageUrl(`/${_id}`))
-	// },
+	async getById(_id: string) {
+		return axios.get<IDeal>(getDealUrl(`/${_id}`))
+	},
 
-	// async create(data: IStageDTO) {
-	// 	return axios.post<string>(getStageUrl('/'), data)
-	// },
+	async getByStage(stageId: string) {
+		return axios.get<IDeal>(getDealUrl(`/stage/${stageId}`))
+	},
 
-	// async update(_id: string, data: IStageDTO) {
-	// 	return axios.put<string>(getStageUrl(`/${_id}`), data)
-	// },
+	async create(data: IDealDTO) {
+		return axios.post<string>(getDealUrl('/'), data)
+	},
 
-	// async delete(_id: string) {
-	// 	return axios.delete<string>(getStageUrl(`/${_id}`))
-	// },
+	async update(_id: string, data: IDealDTO) {
+		return axios.put<string>(getDealUrl(`/${_id}`), data)
+	},
+
+	async updateDealsStage(data: IUpdateDealsStageDTO) {
+		return axios.put<string>(getDealUrl(`/stage`), data)
+	},
+
+	async delete(data: IDeleteDealsStageDTO) {
+		console.log('service data: ', data)
+		return axios.delete<IDeal[]>(getDealUrl(`/`), { data })
+	},
 }

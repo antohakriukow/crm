@@ -1,0 +1,35 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+
+.palette__container {
+	box-shadow: 1px 1px 5px $light-grey, -1px -1px 5px $light-grey;
+	position: absolute;
+	transform: translateY(46px);
+	align-self: flex-start;
+	background-color: $white;
+	width: 395px;
+	height: 188px;
+}
+.palette__arrow {
+	transform: translateY(-28px) translateX(195px);
+	border: 14px solid transparent;
+	border-bottom: 14px solid $light-grey;
+	height: 14px;
+	width: 14px;
+}
+.palette__area {
+	transform: translateY(-28px);
+	padding: 15px;
+	display: grid;
+	gap: 3px;
+	grid-template-columns: repeat(16, 20px);
+}
+.palette__item {
+	width: 20px;
+	height: 20px;
+	border-radius: 4px;
+	&:hover {
+		cursor: pointer;
+		border: black solid 2px;
+	}
+}
