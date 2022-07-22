@@ -2,9 +2,10 @@ import React, { FC } from 'react'
 
 import Btn from '../../../../ui/Btn/Btn'
 
-import { useCanbanItem } from '../../../../../hooks/useCanbanItem'
-
 import styles from './CanbanItem.module.scss'
+
+import { useCanbanItem } from './useCanbanItem'
+import { useDragItem } from './useDragItem'
 
 interface ICanbanItem {
 	id: string
@@ -25,41 +26,12 @@ const CanbanItem: FC<ICanbanItem> = ({
 	stage,
 	color,
 }) => {
-	const { deleteItem } = useCanbanItem()
-
-	const handleDeleteItem = async (e: React.MouseEvent) => {
-		console.log({ deals: [e.currentTarget.id] })
-		await deleteItem({ deals: [e.currentTarget.id] })
-	}
-
-	const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-		const draggingObject = {
-			id: e.currentTarget.dataset['cardId'],
-			pos: e.currentTarget.dataset['cardPosition'],
-			col: e.currentTarget.dataset['cardColumn'],
-		}
-		// console.log('obj: ', e.currentTarget.dataset)
-		e.dataTransfer.setData('text', JSON.stringify(draggingObject))
-	}
-
-	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault()
-	}
-
-	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault()
-		const targetItem = {
-			id: e.currentTarget.dataset['cardId'],
-			pos: e.currentTarget.dataset['cardPosition'],
-			col: e.currentTarget.dataset['cardColumn'],
-		}
-
-		console.log('targetItem: ', targetItem)
-	}
+	const { handleDeleteItem } = useCanbanItem()
+	const { handleDragStart, handleDragOver, handleOnItemDrop } = useDragItem()
 
 	return (
 		<div
-			id={id}
+			// id={id}
 			data-card-id={id}
 			data-card-position={position}
 			data-card-column={stage}
@@ -68,7 +40,7 @@ const CanbanItem: FC<ICanbanItem> = ({
 			draggable={true}
 			onDragStart={handleDragStart}
 			onDragOver={handleDragOver}
-			onDrop={handleDrop}
+			onDrop={handleOnItemDrop}
 		>
 			<div className={styles.item__data}>
 				<h3 className={styles.item__title}>{title}</h3>

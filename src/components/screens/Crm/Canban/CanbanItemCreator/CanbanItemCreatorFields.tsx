@@ -3,10 +3,6 @@ import { FormState, UseFormRegister } from 'react-hook-form'
 
 import Field from '../../../../ui/form-elements/Field'
 
-import { validHex } from '../../../../../shared/regex'
-
-import styles from './CanbanItemCreator.module.scss'
-
 interface ICanbanItemCreatorFields {
 	register: UseFormRegister<any>
 	formState: FormState<any>

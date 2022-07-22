@@ -27,6 +27,7 @@ export interface IDeal {
 
 export interface IUpdateDealsStageDTO {
 	deals: string[]
+	// position: string
 	stage: string
 }
 

@@ -1,14 +1,14 @@
+import cn from 'classnames'
 import React, { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import MaterialIcon from '../../../../ui/MaterialIcon'
 import Button from '../../../../ui/form-elements/Button'
 
-import { useCanbanItem } from '../../../../../hooks/useCanbanItem'
-
 import styles from './CanbanItemCreator.module.scss'
 
 import { IDealEditInput } from '../Canban.interface'
+import { useCanbanItem } from '../CanbanItem/useCanbanItem'
 
 import CanbanItemCreatorFields from './CanbanItemCreatorFields'
 
@@ -20,7 +20,7 @@ const CanbanItemCreator: FC<ICanbanItemCreator> = ({ stage }) => {
 	const [isRedactorOpened, setIsRedactorOpened] = useState(false)
 	const { createItem } = useCanbanItem()
 
-	const { handleSubmit, register, formState } = useForm<IDealEditInput>({
+	const { handleSubmit, register, reset, formState } = useForm<IDealEditInput>({
 		mode: 'onChange',
 	})
 
@@ -35,14 +35,19 @@ const CanbanItemCreator: FC<ICanbanItemCreator> = ({ stage }) => {
 		setIsRedactorOpened(false)
 	}
 
-	const toggleRedactorOpened = () => setIsRedactorOpened(!isRedactorOpened)
+	const toggleRedactorOpened = () => {
+		setIsRedactorOpened(!isRedactorOpened)
+		reset()
+	}
 
 	return (
 		<>
 			<div
-				id={stage}
+				data-id={stage}
 				onClick={toggleRedactorOpened}
-				className={styles.canban__itemCreator}
+				className={cn(styles.canban__itemCreator, {
+					[styles.active]: isRedactorOpened,
+				})}
 			>
 				<MaterialIcon name={isRedactorOpened ? 'MdClear' : 'MdAdd'} />
 			</div>

@@ -1,15 +1,18 @@
 import { useMutation, useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
 
-import { StageService } from '../services/stage.service'
+import { useActions } from '../../../../../hooks/useActions'
 
-import { ICreateStageDTO, IStageDTO } from '../shared/types/crm.interface'
+import { StageService } from '../../../../../services/stage.service'
 
-import { toastError } from '../utils/toastr-error'
+import {
+	ICreateStageDTO,
+	IStageDTO,
+} from '../../../../../shared/types/crm.interface'
 
-import { TypeRootState } from '../store/store'
+import { toastError } from '../../../../../utils/toastr-error'
 
-import { useActions } from './useActions'
+import { TypeRootState } from '../../../../../store/store'
 
 export const useCanbanColumn = () => {
 	const { setEditColumnId } = useActions()

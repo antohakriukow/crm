@@ -1,19 +1,20 @@
 import cn from 'classnames'
 import React, { FC } from 'react'
 
-import Btn from '../../../ui/Btn/Btn'
-import Palette from '../../../ui/Palette/Palette'
-import { usePalette } from '../../../ui/Palette/usePalette'
+import Btn from '../../../../ui/Btn/Btn'
+import Palette from '../../../../ui/Palette/Palette'
+import { usePalette } from '../../../../ui/Palette/usePalette'
 
-import { useCanbanColumn } from '../../../../hooks/useCanbanColumn'
-import { useCanbanItem } from '../../../../hooks/useCanbanItem'
+import { getDate } from '../../../../../utils/date/getDate'
 
-import { getDate } from '../../../../utils/date/getDate'
+import styles from './CanbanColumn.module.scss'
 
-import styles from './Canban.module.scss'
+import CanbanItem from '../CanbanItem/CanbanItem'
+import { useCanbanItem } from '../CanbanItem/useCanbanItem'
+import { useDragItem } from '../CanbanItem/useDragItem'
+import CanbanItemCreator from '../CanbanItemCreator/CanbanItemCreator'
 
-import CanbanItem from './CanbanItem/CanbanItem'
-import CanbanItemCreator from './CanbanItemCreator/CanbanItemCreator'
+import { useCanbanColumn } from './useCanbanColumn'
 
 interface ICanbanColumn {
 	column: {
@@ -28,13 +29,14 @@ interface ICanbanColumn {
 const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 	const { data: response } = useCanbanItem()
 	const { isPaletteOpened, togglePaletteOpened } = usePalette()
+	const { handleDragOver, handleOnColumnDrop } = useDragItem()
 
 	const {
 		openColumnEditor,
 		createStage,
 		updateColor,
-		currentColumn,
 		closeColumnEditor,
+		currentColumn,
 	} = useCanbanColumn()
 	const activeColumn = currentColumn === column._id
 
@@ -55,27 +57,11 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 		})
 	}
 
-	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault()
-	}
-
-	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault()
-		const draggingObject = e.dataTransfer.getData('text')
-		const targetColumn = {
-			id: e.currentTarget.id,
-			col: e.currentTarget.dataset['columnId'],
-			pos: e.currentTarget.dataset['ColumnPosition'],
-		}
-		console.log('draggingObject: ', JSON.parse(draggingObject))
-		console.log('targetCol: ', targetColumn)
-	}
-
 	return (
 		<>
 			<div
 				onDragOver={handleDragOver}
-				onDrop={handleDrop}
+				onDrop={handleOnColumnDrop}
 				className={styles.canban__column}
 				draggable={true}
 				id={column._id}

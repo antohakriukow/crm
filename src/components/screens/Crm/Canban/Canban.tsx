@@ -1,10 +1,9 @@
 import { FC } from 'react'
 
-import { useCanbanColumn } from '../../../../hooks/useCanbanColumn'
-
 import styles from './Canban.module.scss'
 
-import CanbanColumn from './CanbanColumn'
+import CanbanColumn from './CanbanColumn/CanbanColumn'
+import { useCanbanColumn } from './CanbanColumn/useCanbanColumn'
 
 const Canban: FC = () => {
 	const { data: response } = useCanbanColumn()
