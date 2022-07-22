@@ -1,0 +1,32 @@
+@import '../../../../../styles/colors.scss';
+
+.canban__itemCreator {
+	min-height: 32px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $light-grey;
+
+	&:hover {
+		cursor: pointer;
+		background-color: $light-blue;
+		color: white;
+	}
+	> svg {
+		height: 24px;
+		width: 24px;
+	}
+}
+
+.canban__itemRedactor {
+	margin-bottom: 8px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: $white;
+	> div {
+		width: 240px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

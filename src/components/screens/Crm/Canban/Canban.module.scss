@@ -72,25 +72,6 @@
 	background-color: $blue;
 }
 
-.canban__itemCreator {
-	height: 32px;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: $light-grey;
-
-	&:hover {
-		cursor: pointer;
-		background-color: $light-blue;
-		color: white;
-	}
-	> svg {
-		height: 24px;
-		width: 24px;
-	}
-}
-
 .editable {
 	background-color: $white;
 	width: 180px;

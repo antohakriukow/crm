@@ -13,7 +13,7 @@ import { getDate } from '../../../../utils/date/getDate'
 import styles from './Canban.module.scss'
 
 import CanbanItem from './CanbanItem/CanbanItem'
-import CanbanItemCreator from './CanbanItemCreator'
+import CanbanItemCreator from './CanbanItemCreator/CanbanItemCreator'
 
 interface ICanbanColumn {
 	column: {
@@ -55,13 +55,32 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 		})
 	}
 
+	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+	}
+
+	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+		const draggingObject = e.dataTransfer.getData('text')
+		const targetColumn = {
+			id: e.currentTarget.id,
+			col: e.currentTarget.dataset['columnId'],
+			pos: e.currentTarget.dataset['ColumnPosition'],
+		}
+		console.log('draggingObject: ', JSON.parse(draggingObject))
+		console.log('targetCol: ', targetColumn)
+	}
+
 	return (
 		<>
 			<div
+				onDragOver={handleDragOver}
+				onDrop={handleDrop}
 				className={styles.canban__column}
 				draggable={true}
 				id={column._id}
-				data-position={column.position}
+				data-column-id={column._id}
+				data-column-position={column.position}
 			>
 				<div
 					className={styles.canban__columnHeader}
@@ -128,6 +147,7 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 								date={getDate(c.createdAt)}
 								key={c._id}
 								id={c._id}
+								position={c.position}
 								stage={c.stage}
 								color={column.color}
 							/>

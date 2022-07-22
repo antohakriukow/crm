@@ -19,6 +19,7 @@ const AuthFields: FC<IAuthFields> = ({
 	return (
 		<>
 			<Field
+				mode="dark"
 				{...register('email', {
 					required: 'Email is required',
 					pattern: {
@@ -31,6 +32,7 @@ const AuthFields: FC<IAuthFields> = ({
 			/>
 
 			<Field
+				mode="dark"
 				{...register(
 					'password',
 					isPasswordRequired

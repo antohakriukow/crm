@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 
 import Btn from '../../../../ui/Btn/Btn'
 
@@ -8,6 +8,7 @@ import styles from './CanbanItem.module.scss'
 
 interface ICanbanItem {
 	id: string
+	position: number
 	title: string
 	date: string
 	tasksCount: number
@@ -17,6 +18,7 @@ interface ICanbanItem {
 
 const CanbanItem: FC<ICanbanItem> = ({
 	id,
+	position,
 	title,
 	date,
 	tasksCount,
@@ -24,25 +26,49 @@ const CanbanItem: FC<ICanbanItem> = ({
 	color,
 }) => {
 	const { deleteItem } = useCanbanItem()
-	const [column, setColumn] = useState({})
-	const [] = useState({})
-
-	useEffect(() => console.log('end', column), [column, setColumn])
 
 	const handleDeleteItem = async (e: React.MouseEvent) => {
 		console.log({ deals: [e.currentTarget.id] })
 		await deleteItem({ deals: [e.currentTarget.id] })
 	}
 
+	const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+		const draggingObject = {
+			id: e.currentTarget.dataset['cardId'],
+			pos: e.currentTarget.dataset['cardPosition'],
+			col: e.currentTarget.dataset['cardColumn'],
+		}
+		// console.log('obj: ', e.currentTarget.dataset)
+		e.dataTransfer.setData('text', JSON.stringify(draggingObject))
+	}
+
+	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+	}
+
+	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault()
+		const targetItem = {
+			id: e.currentTarget.dataset['cardId'],
+			pos: e.currentTarget.dataset['cardPosition'],
+			col: e.currentTarget.dataset['cardColumn'],
+		}
+
+		console.log('targetItem: ', targetItem)
+	}
+
 	return (
 		<div
 			id={id}
-			data-column={stage}
+			data-card-id={id}
+			data-card-position={position}
+			data-card-column={stage}
 			className={styles.item}
 			style={{ borderLeft: `3px ${color} solid` }}
 			draggable={true}
-			onDragStart={(e) => console.log('start:', e.currentTarget.id)}
-			onDragOver={(e) => setColumn(e.currentTarget.dataset)}
+			onDragStart={handleDragStart}
+			onDragOver={handleDragOver}
+			onDrop={handleDrop}
 		>
 			<div className={styles.item__data}>
 				<h3 className={styles.item__title}>{title}</h3>

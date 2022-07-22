@@ -26,6 +26,21 @@
 			margin-bottom: 8px;
 		}
 	}
+
+	&.dark {
+		border-bottom: $grey 1px solid;
+		&:focus-within {
+			border-color: $light-blue;
+		}
+		> label {
+			> span {
+				color: $grey;
+			}
+			> input {
+				color: $grey;
+			}
+		}
+	}
 }
 
 .field {
@@ -41,6 +56,10 @@
 		margin: 0;
 		padding-left: 0;
 		padding-right: 0;
+
+		&.dark {
+			color: $grey;
+		}
 	}
 }
 
