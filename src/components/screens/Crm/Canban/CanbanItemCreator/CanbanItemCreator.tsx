@@ -25,7 +25,6 @@ const CanbanItemCreator: FC<ICanbanItemCreator> = ({ stage }) => {
 	})
 
 	const onSubmit: SubmitHandler<IDealEditInput> = async (data) => {
-		console.log(data)
 		await createItem({
 			position: 0,
 			title: data.title,

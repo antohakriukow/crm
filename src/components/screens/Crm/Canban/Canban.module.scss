@@ -5,5 +5,6 @@
 	gap: 3px;
 	max-height: calc(100vh - 152px); // TODO: change 152px to current value
 	overflow-x: scroll;
+	overflow-y: hidden;
 	position: relative;
 }

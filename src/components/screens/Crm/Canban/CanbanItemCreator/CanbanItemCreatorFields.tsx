@@ -15,6 +15,7 @@ const CanbanItemCreatorFields: FC<ICanbanItemCreatorFields> = ({
 	return (
 		<>
 			<Field
+				autoFocus
 				mode="dark"
 				{...register('title', {
 					required: 'Name is required',

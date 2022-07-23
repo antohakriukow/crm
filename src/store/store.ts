@@ -3,12 +3,14 @@ import { reducer as toastrReducer } from 'react-redux-toastr'
 
 import { uiReducer } from './ui/ui.slice'
 
+import { canbanReducer } from './canban/canban.slice'
 import { userReducer } from './user/user.slice'
 
 export const store = configureStore({
 	reducer: {
 		ui: uiReducer,
 		user: userReducer,
+		canban: canbanReducer,
 		toastr: toastrReducer,
 	},
 	devTools: true,

@@ -31,7 +31,7 @@ const CanbanItem: FC<ICanbanItem> = ({
 
 	return (
 		<div
-			// id={id}
+			id={id}
 			data-card-id={id}
 			data-card-position={position}
 			data-card-column={stage}

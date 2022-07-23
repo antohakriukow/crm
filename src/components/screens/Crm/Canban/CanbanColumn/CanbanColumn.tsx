@@ -61,7 +61,7 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 		<>
 			<div
 				onDragOver={handleDragOver}
-				onDrop={handleOnColumnDrop}
+				// onDrop={handleOnColumnDrop}
 				className={styles.canban__column}
 				draggable={true}
 				id={column._id}
@@ -122,22 +122,29 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 					</div>
 				</div>
 				<CanbanItemCreator stage={column._id} />
-				{response &&
-					response.data
-						.filter((c) => c.stage === column._id)
-						.sort((a, b) => a.position - b.position)
-						.map((c) => (
-							<CanbanItem
-								title={c.title}
-								tasksCount={0}
-								date={getDate(c.createdAt)}
-								key={c._id}
-								id={c._id}
-								position={c.position}
-								stage={c.stage}
-								color={column.color}
-							/>
-						))}
+				<div
+					className={styles.canban__columnArea}
+					onDrop={handleOnColumnDrop}
+					id={column._id}
+					data-column-id={column._id}
+				>
+					{response &&
+						response.data
+							.filter((c) => c.stage === column._id)
+							.sort((a, b) => a.position - b.position)
+							.map((c) => (
+								<CanbanItem
+									title={c.title}
+									tasksCount={0}
+									date={getDate(c.createdAt)}
+									key={c._id}
+									id={c._id}
+									position={c.position}
+									stage={c.stage}
+									color={column.color}
+								/>
+							))}
+				</div>
 			</div>
 		</>
 	)

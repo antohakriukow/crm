@@ -1,20 +1,13 @@
-import { useState } from 'react'
-
-import { DealService } from '../../../../../services/deal.service'
-
 import { useCanbanItem } from './useCanbanItem'
 
 export const useDragItem = () => {
 	const { handleUpdateItemsStage } = useCanbanItem()
-	// const [draggingObject, setDraggingObject] = useState({})
-	// const [targetColumn, setTargetColumn] = useState()
-	// const [targetItem, setTargetItem] = useState()
 
 	const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
 		const draggingObject = {
 			id: e.currentTarget.dataset['cardId'],
-			pos: e.currentTarget.dataset['cardPosition'],
-			col: e.currentTarget.dataset['cardColumn'],
+			position: e.currentTarget.dataset['cardPosition'],
+			column: e.currentTarget.dataset['cardColumn'],
 		}
 		e.dataTransfer.setData('text', JSON.stringify(draggingObject))
 	}
@@ -23,29 +16,32 @@ export const useDragItem = () => {
 		e.preventDefault()
 	}
 
-	const handleOnItemDrop = (e: React.DragEvent<HTMLDivElement>) => {
+	const handleOnItemDrop = async (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
-		const targetItem = {
-			id: e.currentTarget.dataset['cardId'],
-			pos: e.currentTarget.dataset['cardPosition'],
-			col: e.currentTarget.dataset['cardColumn'],
-		}
+		e.stopPropagation()
 
-		console.log('targetItem: ', targetItem)
+		const draggingObject = JSON.parse(e.dataTransfer.getData('text'))
+
+		const data = {
+			deals: [draggingObject.id],
+			stage: String(e.currentTarget.dataset['cardColumn']),
+			position: Number(e.currentTarget.dataset['cardPosition']),
+		}
+		console.log(data)
+		await handleUpdateItemsStage(data)
 	}
 
 	const handleOnColumnDrop = async (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault()
+
 		const draggingObject = JSON.parse(e.dataTransfer.getData('text'))
-		const targetColumn = {
-			id: e.currentTarget.id,
-			col: e.currentTarget.dataset['columnId'],
-			pos: e.currentTarget.dataset['ColumnPosition'],
-		}
+
 		const data = {
 			deals: [draggingObject.id],
-			stage: targetColumn.id,
+			stage: String(e.currentTarget.dataset['columnId']),
+			position: 0,
 		}
+		console.log(data)
 		await handleUpdateItemsStage(data)
 	}
 

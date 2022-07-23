@@ -4,10 +4,10 @@
 	min-height: calc(100vh - 152px);
 	width: 280px;
 	min-width: 280px;
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	overflow-y: scroll;
+	// display: flex;
+	// flex-direction: column;
+	// gap: 4px;
+	// overflow-y: scroll;
 	border-left: 1px dashed $grey;
 
 	&:last-of-type {
@@ -61,6 +61,14 @@
 	height: 32px;
 	width: 20px;
 	background-color: $blue;
+}
+
+.canban__columnArea {
+	height: 100%;
+	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 .editable {

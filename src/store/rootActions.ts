@@ -7,6 +7,16 @@ import {
 	toggleUSerMenu,
 } from './ui/ui.slice'
 
+import {
+	addToDragItems,
+	clearCanbanState,
+	clearDragItems,
+	clearTargetColumn,
+	clearTargetItem,
+	removeFromDragItems,
+	setTargetColumn,
+	setTargetItem,
+} from './canban/canban.slice'
 import * as userActions from './user/user.actions'
 
 export const allActions = {
@@ -17,4 +27,12 @@ export const allActions = {
 	toggleColumnRedactorOpened,
 	togglePaletteOpened,
 	setEditColumnId,
+	addToDragItems,
+	removeFromDragItems,
+	clearDragItems,
+	setTargetColumn,
+	clearTargetColumn,
+	setTargetItem,
+	clearTargetItem,
+	clearCanbanState,
 }
