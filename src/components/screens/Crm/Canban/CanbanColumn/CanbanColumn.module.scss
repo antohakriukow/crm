@@ -4,10 +4,6 @@
 	min-height: calc(100vh - 152px);
 	width: 280px;
 	min-width: 280px;
-	// display: flex;
-	// flex-direction: column;
-	// gap: 4px;
-	// overflow-y: scroll;
 	border-left: 1px dashed $grey;
 
 	&:last-of-type {
@@ -34,14 +30,34 @@
 .canban__columnName {
 	font-weight: 600;
 	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.canban__columnNameTools {
+	max-width: 50px;
+	display: flex;
+	> button {
+		width: 30px;
+		height: 30px;
+		padding: 0;
+		margin: 0;
+		> svg {
+			margin: auto;
+			&:hover {
+				color: $orange;
+			}
+		}
+	}
 }
 
 .canban__columnTools {
 	display: flex;
 	align-items: center;
 	> button {
-		width: 25px;
-		height: 25px;
+		width: 30px;
+		height: 30px;
 		> svg {
 			margin: auto;
 			&:hover {
@@ -73,7 +89,7 @@
 
 .editable {
 	background-color: $white;
-	width: 180px;
+	width: 160px;
 	height: 20px;
 	padding: 4px;
 }

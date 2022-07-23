@@ -7,6 +7,7 @@ import { StageService } from '../../../../../services/stage.service'
 
 import {
 	ICreateStageDTO,
+	IDeleteDealsStageDTO,
 	IStageDTO,
 } from '../../../../../shared/types/crm.interface'
 
@@ -41,9 +42,29 @@ export const useCanbanColumn = () => {
 		}
 	)
 
+	const { mutateAsync: updateStageName } = useMutation(
+		'update column name',
+		(data: IStageDTO) => StageService.update(data),
+		{
+			onSuccess() {
+				queryData.refetch()
+			},
+		}
+	)
+
 	const { mutateAsync: createStage } = useMutation(
 		'create column',
 		(data: ICreateStageDTO) => StageService.create(data),
+		{
+			onSuccess() {
+				queryData.refetch()
+			},
+		}
+	)
+
+	const { mutateAsync: deleteStage } = useMutation(
+		'delete column',
+		(_id: string) => StageService.delete(_id),
 		{
 			onSuccess() {
 				queryData.refetch()
@@ -57,6 +78,8 @@ export const useCanbanColumn = () => {
 		closeColumnEditor,
 		updateColor,
 		createStage,
+		updateStageName,
+		deleteStage,
 		currentColumn,
 	}
 }

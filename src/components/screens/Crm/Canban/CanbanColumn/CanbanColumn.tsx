@@ -35,7 +35,9 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 		openColumnEditor,
 		createStage,
 		updateColor,
+		updateStageName,
 		closeColumnEditor,
+		deleteStage,
 		currentColumn,
 	} = useCanbanColumn()
 	const activeColumn = currentColumn === column._id
@@ -51,17 +53,25 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 	}
 
 	const handleUpdateColor = async (e: React.MouseEvent) => {
+		console.log(e.currentTarget)
 		await updateColor({
 			_id: currentColumn,
 			color: e.currentTarget.id,
 		})
 	}
 
+	const handleUpdateName = async (e: React.MouseEvent) => {
+		console.log(e.target)
+		// await updateStageName({
+		// 	_id: currentColumn,
+		// 	color: e.currentTarget.id,
+		// })
+	}
+
 	return (
 		<>
 			<div
 				onDragOver={handleDragOver}
-				// onDrop={handleOnColumnDrop}
 				className={styles.canban__column}
 				draggable={true}
 				id={column._id}
@@ -83,6 +93,15 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 							})}
 						>
 							{column.name}
+							{activeColumn && (
+								<div className={styles.canban__columnNameTools}>
+									<Btn
+										id={column._id}
+										onClick={(e) => handleUpdateName(e)}
+										icon="MdDone"
+									/>
+								</div>
+							)}
 						</div>
 						<p
 							className={cn(styles.canban__columnCounter, {
@@ -94,18 +113,18 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 					</div>
 
 					<div className={styles.canban__columnTools}>
-						{activeColumn && (
+						{/* {activeColumn && (
 							<Btn
 								id={column._id}
 								onClick={togglePaletteOpened}
 								icon="MdOutlinePalette"
 							/>
-						)}
+						)} */}
 						{activeColumn ? (
 							<Btn
 								id={column._id}
-								onClick={closeColumnEditor}
-								icon="MdOutlineClear"
+								onClick={togglePaletteOpened}
+								icon="MdOutlinePalette"
 							/>
 						) : (
 							<Btn
@@ -114,6 +133,16 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 								icon="MdModeEditOutline"
 							/>
 						)}
+						<Btn
+							id={column._id}
+							onClick={
+								activeColumn
+									? closeColumnEditor
+									: (e) => deleteStage(e.currentTarget.id)
+							}
+							icon="MdOutlineClear"
+						/>
+
 						<Btn
 							dataPosition={column.position}
 							onClick={(e) => handleCreateStage(e)}
