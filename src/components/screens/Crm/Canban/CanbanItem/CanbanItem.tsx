@@ -5,7 +5,7 @@ import Btn from '../../../../ui/Btn/Btn'
 import styles from './CanbanItem.module.scss'
 
 import { useCanbanItem } from './useCanbanItem'
-import { useDragItem } from './useDragItem'
+import { useDrag } from './useDrag'
 
 interface ICanbanItem {
 	id: string
@@ -27,7 +27,7 @@ const CanbanItem: FC<ICanbanItem> = ({
 	color,
 }) => {
 	const { handleDeleteItem } = useCanbanItem()
-	const { handleDragStart, handleDragOver, handleOnItemDrop } = useDragItem()
+	const { handleDragItemStart, handleDragOver, handleOnItemDrop } = useDrag()
 
 	return (
 		<div
@@ -38,7 +38,7 @@ const CanbanItem: FC<ICanbanItem> = ({
 			className={styles.item}
 			style={{ borderLeft: `3px ${color} solid` }}
 			draggable={true}
-			onDragStart={handleDragStart}
+			onDragStart={handleDragItemStart}
 			onDragOver={handleDragOver}
 			onDrop={handleOnItemDrop}
 		>

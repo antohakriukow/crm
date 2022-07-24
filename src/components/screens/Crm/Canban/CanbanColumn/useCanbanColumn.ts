@@ -52,6 +52,16 @@ export const useCanbanColumn = () => {
 		}
 	)
 
+	const { mutateAsync: moveStageRight } = useMutation(
+		'update column position',
+		(_id: string) => StageService.moveRight(_id),
+		{
+			onSuccess() {
+				queryData.refetch()
+			},
+		}
+	)
+
 	const { mutateAsync: createStage } = useMutation(
 		'create column',
 		(data: ICreateStageDTO) => StageService.create(data),
@@ -79,6 +89,7 @@ export const useCanbanColumn = () => {
 		updateColor,
 		createStage,
 		updateStageName,
+		moveStageRight,
 		deleteStage,
 		currentColumn,
 	}

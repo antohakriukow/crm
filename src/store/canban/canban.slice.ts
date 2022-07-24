@@ -1,9 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { IDrag } from './canban.interface'
 import { ICanbanState } from './canban.interface'
-
-const empty = { id: '', position: '', column: '' }
 
 const initialState: ICanbanState = {
 	draggingItems: [],
@@ -40,11 +37,6 @@ export const canbanSlice = createSlice({
 			state.draggingItems.splice(0)
 			state.targetColumn = ''
 			state.targetItem = 0
-			// console.log('Cleared state: ', {
-			// 	draggingItems: state.draggingItems,
-			// 	targetColumn: state.targetColumn,
-			// 	targetItem: state.targetItem,
-			// })
 		},
 	},
 })

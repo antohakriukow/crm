@@ -1,9 +1,9 @@
 import { useCanbanItem } from './useCanbanItem'
 
-export const useDragItem = () => {
+export const useDrag = () => {
 	const { handleUpdateItemsStage } = useCanbanItem()
 
-	const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+	const handleDragItemStart = (e: React.DragEvent<HTMLDivElement>) => {
 		const draggingObject = {
 			id: e.currentTarget.dataset['cardId'],
 			position: e.currentTarget.dataset['cardPosition'],
@@ -27,7 +27,6 @@ export const useDragItem = () => {
 			stage: String(e.currentTarget.dataset['cardColumn']),
 			position: Number(e.currentTarget.dataset['cardPosition']),
 		}
-		console.log(data)
 		await handleUpdateItemsStage(data)
 	}
 
@@ -41,12 +40,11 @@ export const useDragItem = () => {
 			stage: String(e.currentTarget.dataset['columnId']),
 			position: 0,
 		}
-		console.log(data)
 		await handleUpdateItemsStage(data)
 	}
 
 	return {
-		handleDragStart,
+		handleDragItemStart,
 		handleDragOver,
 		handleOnItemDrop,
 		handleOnColumnDrop,

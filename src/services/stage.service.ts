@@ -18,7 +18,6 @@ export const StageService = {
 	},
 
 	async create(data: ICreateStageDTO) {
-		console.log(data)
 		return axios.post<string>(getStageUrl('/'), data)
 	},
 
@@ -27,6 +26,10 @@ export const StageService = {
 			name: data?.name,
 			color: data?.color,
 		})
+	},
+
+	async moveRight(_id: string) {
+		return axios.put<string>(getStageUrl(`/move-right/${_id}`), {})
 	},
 
 	async delete(_id: string) {

@@ -1,11 +1,10 @@
 import cn from 'classnames'
-import React, { FC, forwardRef, useEffect, useRef } from 'react'
+import React, { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import Btn from '../../../../ui/Btn/Btn'
 import Palette from '../../../../ui/Palette/Palette'
 import { usePalette } from '../../../../ui/Palette/usePalette'
-import { IField } from '../../../../ui/form-elements/form.interface'
 
 import { getDate } from '../../../../../utils/date/getDate'
 
@@ -13,7 +12,7 @@ import styles from './CanbanColumn.module.scss'
 
 import CanbanItem from '../CanbanItem/CanbanItem'
 import { useCanbanItem } from '../CanbanItem/useCanbanItem'
-import { useDragItem } from '../CanbanItem/useDragItem'
+import { useDrag } from '../CanbanItem/useDrag'
 import CanbanItemCreator from '../CanbanItemCreator/CanbanItemCreator'
 
 import { useCanbanColumn } from './useCanbanColumn'
@@ -31,7 +30,7 @@ interface ICanbanColumn {
 const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 	const { data: response } = useCanbanItem()
 	const { isPaletteOpened, togglePaletteOpened } = usePalette()
-	const { handleDragOver, handleOnColumnDrop } = useDragItem()
+	const { handleDragOver, handleOnColumnDrop } = useDrag()
 
 	const {
 		openColumnEditor,
@@ -40,13 +39,13 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 		updateStageName,
 		closeColumnEditor,
 		deleteStage,
+		moveStageRight,
 		currentColumn,
 	} = useCanbanColumn()
 	const activeColumn = currentColumn === column._id
 
 	const handleCreateStage = async (e: React.BaseSyntheticEvent) => {
 		const currentPosition = e.currentTarget.dataset.position
-		console.log(currentPosition)
 		await createStage({
 			name: 'Stage 1',
 			color: '#a1a6ac',
@@ -54,8 +53,12 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 		})
 	}
 
+	const handleMoveStage = (e: React.BaseSyntheticEvent) => {
+		moveStageRight(e.currentTarget.id)
+		closeColumnEditor()
+	}
+
 	const handleUpdateColor = async (e: React.MouseEvent) => {
-		console.log(e.currentTarget)
 		await updateColor({
 			_id: currentColumn,
 			color: e.currentTarget.id,
@@ -77,7 +80,6 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 			<div
 				onDragOver={handleDragOver}
 				className={styles.canban__column}
-				draggable={true}
 				id={column._id}
 				data-column-id={column._id}
 				data-column-position={column.position}
@@ -126,13 +128,6 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 					</div>
 
 					<div className={styles.canban__columnTools}>
-						{/* {activeColumn && (
-							<Btn
-								id={column._id}
-								onClick={togglePaletteOpened}
-								icon="MdOutlinePalette"
-							/>
-						)} */}
 						{activeColumn ? (
 							<Btn
 								id={column._id}
@@ -156,11 +151,20 @@ const CanbanColumn: FC<ICanbanColumn> = ({ column }) => {
 							icon="MdOutlineClear"
 						/>
 
-						<Btn
-							dataPosition={column.position}
-							onClick={(e) => handleCreateStage(e)}
-							icon="MdAdd"
-						/>
+						{activeColumn ? (
+							<Btn
+								id={column._id}
+								dataPosition={column.position}
+								onClick={(e) => handleMoveStage(e)}
+								icon="MdOutlineArrowForward"
+							/>
+						) : (
+							<Btn
+								dataPosition={column.position}
+								onClick={(e) => handleCreateStage(e)}
+								icon="MdAdd"
+							/>
+						)}
 					</div>
 				</div>
 				<CanbanItemCreator stage={column._id} />

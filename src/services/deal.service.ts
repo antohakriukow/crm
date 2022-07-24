@@ -35,7 +35,6 @@ export const DealService = {
 	},
 
 	async delete(data: IDeleteDealsStageDTO) {
-		console.log('service data: ', data)
 		return axios.delete<IDeal[]>(getDealUrl(`/`), { data })
 	},
 }
