@@ -35,6 +35,22 @@
 	justify-content: space-between;
 }
 
+.canban__columnNameForm {
+	display: flex;
+	align-items: center;
+}
+
+.canban__columnNameInput {
+	display: block;
+	> input {
+		font-weight: 600;
+		margin: 0;
+		padding: 0;
+		border: none;
+		outline: none;
+	}
+}
+
 .canban__columnNameTools {
 	max-width: 50px;
 	display: flex;
